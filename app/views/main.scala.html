@@ -1,0 +1,39 @@
+@(title: String)(content: Html)(implicit flash: Flash, lang: Lang)
+<!DOCTYPE html>
+<html>
+<head>
+  <title>@title</title>
+  <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.css")"/>
+  <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap-theme.css")"/>
+  <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")"/>
+</head>
+<body>
+  <div class="screenshot">
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="@routes.Application.index">@Messages("application.name")</a>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      @if(flash.get("success").isDefined) {
+        <div class="alert alert-success">
+          @flash.get("success")
+        </div>
+      }
+
+      @if(flash.get("error").isDefined) {
+        <div class="alert alert-error">
+          @flash.get("error")
+        </div>
+      }
+
+      @content
+      @debug()
+    </div>
+  </div>
+  <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")"></script>
+  <script type="text/javascript" src="@routes.Assets.at("javascripts/bootstrap.js")"></script>
+</body>
+</html>

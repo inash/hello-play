@@ -1,0 +1,15 @@
+@(products: List[Product])(implicit flash: Flash, lang: Lang)
+@main(Messages("application.name")) {
+  <dl class="products">
+    @for(product <- products) {
+      <dt><a href="@routes.Products.show(product.ean)">@product.name</a></dt>
+      <dd>@product.description</dd>
+    }
+  </dl>
+
+  <p>
+    <a href="@controllers.routes.Products.newProduct()" class="button">
+      <li class="icon-plus"></li> @Messages("products.new.command")
+    </a>
+  </p>
+}
